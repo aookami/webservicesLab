@@ -4,7 +4,7 @@ import requests
 #main loop
 
 print("Welcome to serverControl v0.1")
-print("Available commands:help, addFlight, addHotel, removeFlight, removeHotel")
+print("Available commands:help, addFlight, addHotel, removeFlight, removeHotel, addPackage, addPackageL")
 while(True):
     print("Waiting user input...")
     text = input()
@@ -74,7 +74,7 @@ while(True):
         print("price:")
         price = input()
         longstring = id + "-" + idf + "-" + idh + "-" +seats + "-" +price
-        response = requests.post("http://localhost:8080/ServerD/rest/agt/registerpackage", longstring)
+        response = requests.post("http://localhost:8080/ServerD/rest/agt/registerpackageid", longstring)
         print(response.text)
 ##	public void addPackage(int idp, int id, int seats, String to, String from, int price, long fftimestamp, int idh,
 
@@ -96,7 +96,15 @@ while(True):
         fftimestamp = input()
         print("idhotel:")
         idhotel = input()
+        print("nameHotel:")
+        hname = input()
+        print("hotelLoc:")
+        hloc = input()
+        print("RoomCap")
+        rcap = input()
         longstring = idp  + "-" +idf  + "-" +seats  + "-" +to  + "-" +fro + "-" +price + "-" +fftimestamp + "-" +idhotel
+        longstring = longstring + "-" +  hname + "-" + hloc + "-" + rcap
+        print(longstring)
         response = requests.post("http://localhost:8080/ServerD/rest/agt/registerpackage", longstring)
         print(response.text)
 
