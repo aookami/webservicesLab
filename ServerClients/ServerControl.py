@@ -54,7 +54,7 @@ while(True):
         destination = input()
         print("NumberOfRooms:")
         departure = input()
-        print("RoomCapacity:")
+        print("RoomCapacity:")  
         firstflighttime = input()
         print("RoomPrice:")
         seatprice = input()
