@@ -121,7 +121,8 @@ public class ServerMain {
 	@Consumes(MediaType.TEXT_PLAIN)
 	@Produces(MediaType.TEXT_PLAIN)
 	public Response sellFlight(String msg) {
-		serv.sellFlight((int) Integer.valueOf(msg.split("-")[0]), (int) Integer.valueOf(msg.split("-")[1]));
+		System.out.println(msg);
+		serv.sellFlight((int)Integer.valueOf(msg.split("-")[0]), (int) Integer.valueOf(msg.split("-")[1]));
 		return Response.status(200).entity("Sold flight" + msg).build();
 	}
 

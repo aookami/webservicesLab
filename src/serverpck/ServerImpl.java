@@ -148,6 +148,7 @@ public class ServerImpl  implements Server {
 			if (h.id == idh)
 				z = h;
 		}
+	
 		Package packagen = new Package(idp, y, z, seats, price);
 		packages.add(packagen);
 	}
@@ -227,8 +228,36 @@ public class ServerImpl  implements Server {
 
 	@Override
 	public boolean sellPackage(int flightid, int hotelid, int seats, long startdate, long enddate) {
-		// TODO Auto-generated method stub
+		System.out.println("Selling " + seats + " seats on flight " + flightid + "...");
+
+		for (Flight x : flights) {
+			if (x.id == flightid) {
+				if (x.seats < seats) {
+					return false;
+				}
+				x.seats = x.seats - seats;
+				return true;
+			}
+		}
+		
+		System.out.println(
+				"Selling " + seats + " rooms on hotel " + hotelid + " start and end dates: " + startdate + " - " + enddate);
+
+		for (Hotel x : hotels) {
+			if (x.getAvailablerooms() > seats && x.id == hotelid) {
+				int rseats = seats;
+				for (Room y : x.getRooms()) {
+					if (y.is_occupied == false) {
+						rseats = rseats - y.size;
+					}
+					if (rseats <= 0)
+						break;
+				}
+				return true;
+			}
+		}
 		return false;
+		
 	}
 
 
